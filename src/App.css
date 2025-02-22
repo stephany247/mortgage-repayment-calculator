@@ -22,3 +22,15 @@ input[type="radio"]::before {
 input[type="radio"]:checked::before {
   background-color: hsl(61, 70%, 52%); /* Inner filled circle */
 }
+
+input {
+  background-color: transparent !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  background-color: transparent !important;
+  -webkit-box-shadow: 0 0 0px 1000px hsl(0, 0%, 100%) inset !important;
+}

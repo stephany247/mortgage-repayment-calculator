@@ -7,7 +7,7 @@ const inputFields = [
   {
     id: "amount",
     label: "Mortgage Amount",
-    type: "number",
+    type: "text",
     unit: "£",
     position: "left",
   },
@@ -36,8 +36,15 @@ function App() {
   const [mortgageType, setMortgageType] = useState("Repayment"); // Default type
 
   // Handle input changes
+  // const handleChange = (e) => {
+  //   setValues({ ...values, [e.target.id]: e.target.value });
+  // };
+
   const handleChange = (e) => {
-    setValues({ ...values, [e.target.id]: e.target.value });
+    const rawValue = e.target.value.replace(/,/g, ""); // Remove commas
+    if (!isNaN(rawValue)) {
+      setValues({ ...values, [e.target.id]: rawValue });
+    }
   };
 
   // Handle mortgage type change
@@ -99,7 +106,7 @@ function App() {
           <div className="flex flex-col gap-2">
             <label htmlFor={inputFields[0].id}>{inputFields[0].label}</label>
             <div className="relative w-full border border-neutral-slate-500 rounded-md group focus-within:border-primary-lime">
-              {/* Left-aligned unit (Currency signs) */}
+              {/* Left-aligned unit (Currency sign) */}
               {inputFields[0].position === "left" && (
                 <span className="absolute px-3 py-2 rounded-l-md bg-neutral-slate-100 left-0 top-1/2 -translate-y-1/2 text-neutral-slate-500 font-bold group-focus-within:bg-primary-lime">
                   {inputFields[0].unit}
@@ -109,10 +116,16 @@ function App() {
                 type={inputFields[0].type}
                 id={inputFields[0].id}
                 name={inputFields[0].id}
-                value={values[inputFields[0].id]}
+                // value={Number(values[inputFields[0].id]).toLocaleString()}
+                value={
+                  values[inputFields[0].id]
+                    ? Number(values[inputFields[0].id]).toLocaleString()
+                    : ""
+                }
                 onChange={handleChange}
                 className={`border border-transparent text-neutral-slate-900 font-bold rounded-md py-2 w-full text-left outline-none px-3 hover:border-neutral-slate-700 focus:border-primary-lime transition duration-200 ease-in-out
           ${inputFields[0].position === "left" ? "pl-10 pr-3" : "pl-3 pr-10"}`}
+                required
               />
               {/* Right-aligned unit (Years, Percentage) */}
               {inputFields[0].position === "right" && (
@@ -143,6 +156,7 @@ function App() {
                     onChange={handleChange}
                     className={`border border-transparent text-neutral-slate-900 font-bold rounded-md py-2 w-full text-left outline-none px-3 hover:border-neutral-slate-700 focus:border-primary-lime transition duration-200 ease-in-out
               ${field.position === "left" ? "pl-10 pr-3" : "pl-3 pr-10"}`}
+                    required
                   />
                   {/* Right-aligned unit (Years, Percentage) */}
                   {field.position === "right" && (
@@ -172,6 +186,7 @@ function App() {
                     checked={mortgageType === type}
                     onChange={handleMortgageTypeChange}
                     className="accent-primary-lime"
+                    required
                   />
                   {type}
                 </label>
@@ -182,7 +197,7 @@ function App() {
 
         <button
           type="submit"
-          className="flex items-center justify-center gap-2 bg-primary-lime hover:bg-primary-lime/60 text-neutral-slate-900 font-bold py-3 rounded-full hover:bg-opacity-80 transition md:w-3/5"
+          className="flex items-center justify-center gap-2 bg-primary-lime hover:bg-primary-lime/60 text-neutral-slate-900 font-bold py-3 rounded-full hover:bg-opacity-80 transition duration-200 ease-in-out md:w-3/5"
         >
           <img src={calculator} alt="" />
           <p>Calculate Repayments</p>
