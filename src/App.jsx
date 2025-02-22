@@ -98,7 +98,7 @@ function App() {
               setValues({ amount: "", term: "", rate: "" });
               setMonthlyPayment(null);
             }}
-            aria-label="lear all fields"
+            aria-label="Clear all fields"
           />
         </div>
 
@@ -126,7 +126,6 @@ function App() {
                 onChange={handleChange}
                 className={`border border-transparent text-neutral-slate-900 font-bold rounded-md py-2 w-full text-left outline-none px-3 hover:border-neutral-slate-700 focus:border-primary-lime transition duration-200 ease-in-out
           ${inputFields[0].position === "left" ? "pl-10 pr-3" : "pl-3 pr-10"}`}
-                aria-describedby={`${field.id}-desc`}
                 required
               />
               {/* Right-aligned unit (Years, Percentage) */}
