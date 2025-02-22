@@ -1,0 +1,24 @@
+input[type="radio"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid hsl(61, 70%, 52%); /* Lime border */
+  border-radius: 50%;
+  display: grid;
+  place-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="radio"]::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  background-color: transparent;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+}
+
+input[type="radio"]:checked::before {
+  background-color: hsl(61, 70%, 52%); /* Inner filled circle */
+}
