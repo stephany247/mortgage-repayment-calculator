@@ -98,7 +98,8 @@ function App() {
               setValues({ amount: "", term: "", rate: "" });
               setMonthlyPayment(null);
             }}
-          ></input>
+            aria-label="lear all fields"
+          />
         </div>
 
         <div className="flex flex-col gap-4">
@@ -125,6 +126,7 @@ function App() {
                 onChange={handleChange}
                 className={`border border-transparent text-neutral-slate-900 font-bold rounded-md py-2 w-full text-left outline-none px-3 hover:border-neutral-slate-700 focus:border-primary-lime transition duration-200 ease-in-out
           ${inputFields[0].position === "left" ? "pl-10 pr-3" : "pl-3 pr-10"}`}
+                aria-describedby={`${field.id}-desc`}
                 required
               />
               {/* Right-aligned unit (Years, Percentage) */}
@@ -198,8 +200,9 @@ function App() {
         <button
           type="submit"
           className="flex items-center justify-center gap-2 bg-primary-lime hover:bg-primary-lime/60 text-neutral-slate-900 font-bold py-3 rounded-full hover:bg-opacity-80 transition duration-200 ease-in-out md:w-3/5"
+          aria-label="Calculate mortgage repayments"
         >
-          <img src={calculator} alt="" />
+          <img src={calculator} alt="Calculator icon" />
           <p>Calculate Repayments</p>
         </button>
       </form>
