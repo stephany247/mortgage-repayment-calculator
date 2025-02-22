@@ -205,10 +205,12 @@ function App() {
           <p>Calculate Repayments</p>
         </button>
       </form>
-      <section className="bg-neutral-slate-900/95 text-center md:rounded-bl-[20%] md:rounded-r-3xl md:w-1/2">
+
+      
+      <section className="bg-neutral-slate-900/95 text-center md:rounded-bl-[20%] md:rounded-r-3xl md:w-1/2 flex items-stretch">
         {monthlyPayment === null ? (
           // Show this when form hasn't been submitted
-          <div className="p-8 space-y-4 text-neutral-slate-300">
+          <div className="p-8 space-y-4 text-neutral-slate-300 self-center">
             <img
               src={illustration}
               alt="Empty illustration"
